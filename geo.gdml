@@ -14,9 +14,23 @@
 <define>
 
 <!--
+LAr props:
+-->
+  <matrix name="FASTCOMPONENT" coldim="2" values=" 9.7*eV 0.913594
+                                                   9.76377*eV 1
+                                                   9.8*eV 0.971252"/>
+  <matrix name="SLOWCOMPONENT" coldim="2" values=" 9.7*eV 0.913594
+                                                   9.76377*eV 1
+                                                   9.8*eV 0.971252"/>
 
+  <constant name="SCINTILLATIONYIELD" value="3621.0/MeV"/>
+  <constant name="RESOLUTIONSCALE" value="1"/>
+  <constant name="FASTTIMECONSTANT" value="6*ns"/>  
+  <constant name="SLOWTIMECONSTANT" value="1.8*us"/>
+  <constant name="YIELDRATIO" value="0.25"/>
 
-
+<!--
+USER DEFINED PROPERTIES ABOVE ^^^
 -->
 
    <position name="posCryoInDetEnc"     unit="cm" x="" y="0" z="0"/>
@@ -233,7 +247,19 @@
    <fraction n="0.019" ref="beryllium"/>
   </material>
 
+<!--
+ Adding Lar props:
+-->
+
   <material name="LAr" formula="LAr">
+  <!--
+   <property name="FASTCOMPONENT" ref="FASTCOMPONENT"/> 
+   <property name="SLOWCOMPONENT" ref="SLOWCOMPONENT"/> 
+   <property name="SCINTILLATIONYIELD" ref="SCINTILLATIONYIELD"/> 
+   <property name="RESOLUTIONSCALE" ref="RESOLUTIONSCALE"/> 
+   <property name="FASTTIMECONSTANT" ref="FASTTIMECONSTANT"/> 
+   <property name="SLOWTIMECONSTANT" ref="SLOWTIMECONSTANT"/> 
+   <property name="YIELDRATIO" ref="YIELDRATIO"/> -->
    <D value="1.40" unit="g/cm3"/>
    <fraction n="1.0000" ref="argon"/>
   </material>

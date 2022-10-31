@@ -15,4 +15,5 @@ class Detector : public G4VUserDetectorConstruction
 
   private:
     const G4GDMLParser& fParser;
+    G4VPhysicalVolume* World;
 };

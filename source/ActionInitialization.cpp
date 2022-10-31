@@ -4,7 +4,6 @@
 #include "../include/RunAction.h"
 #include "../include/EventAction.h"
 #include "../include/SteppingAction.h"
-#include "../include/TrackingAction.h"
 
 ActionInitialization::ActionInitialization() {}
 
@@ -29,7 +28,4 @@ void ActionInitialization::Build() const
     
     SteppingAction *steppingAction = new SteppingAction();
     SetUserAction(steppingAction);
-
-    TrackingAction *trackingAction = new TrackingAction();
-    SetUserAction(trackingAction);
 }

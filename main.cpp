@@ -2,10 +2,6 @@
 using namespace std;
 
 // User Action classes
-#include "include/SteppingAction.h"
-#include "include/RunAction.h"
-#include "include/TrackingAction.h"
-#include "include/EventAction.h"
 #include "include/ActionInitialization.h"
 
 // User Initialization classes
@@ -55,11 +51,7 @@ void print_aux(const G4GDMLAuxListType *auxInfoList, G4String prepend = "|")
 
 int main(int argc, char **argv)
 {
-#ifdef G4MULTITHREADED
   G4MTRunManager *runManager = new G4MTRunManager();
-#else
-  G4RunManager *runManager = new G4RunManager();
-#endif
 
   // GDML load
   G4GDMLParser parser;
@@ -71,11 +63,11 @@ int main(int argc, char **argv)
   physicsList->ReplacePhysics(new G4EmStandardPhysics_option2());
   runManager->SetUserInitialization(physicsList);
 
-  // User action and initialization classes
+  // User initialization classes
   runManager->SetUserInitialization(new Detector(parser));
 
   runManager->SetUserInitialization(new ActionInitialization());
-  // runManager->Initialize();
+  runManager->Initialize();
 
   // Initializing the visualization manager
   auto *visManager = new G4VisExecutive();
@@ -121,5 +113,5 @@ int main(int argc, char **argv)
   delete visManager;
   delete uiExecutive;
   delete runManager;
-  return 0;
+  return 0; 
 }

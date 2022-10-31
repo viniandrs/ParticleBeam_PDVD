@@ -1,5 +1,4 @@
-#include "../include/RunAction.h"
-#include "../include/Constants.h"
+#include "RunAction.h"
 
 #include "g4root.hh"
 #include "G4Run.hh"

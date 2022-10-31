@@ -1,2 +1,1 @@
-# MyXARAPUCASim
-Repository which I'll be using to make my own X-ARAPUCA simulation
+# ProtoDUNE Vertical Drift module - Particle Beam Simulation
