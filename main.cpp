@@ -63,6 +63,13 @@ int main(int argc, char **argv)
   physicsList->ReplacePhysics(new G4EmStandardPhysics_option2());
   runManager->SetUserInitialization(physicsList);
 
+  G4OpticalPhysics *opticalPhysics = new G4OpticalPhysics();
+  opticalPhysics->Configure(kCerenkov, true);
+  opticalPhysics->Configure(kScintillation, true);
+  physicsList->DumpList();
+
+  physicsList->RegisterPhysics(new G4OpticalPhysics());
+  
   // User initialization classes
   runManager->SetUserInitialization(new Detector(parser));
 

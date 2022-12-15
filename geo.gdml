@@ -2929,7 +2929,7 @@ USER DEFINED PROPERTIES ABOVE ^^^
     </physvol>
     </volume>
 
-    <volume name="volWorld" >
+    <volume name="World" >
       <materialref ref="Air"/>
       <solidref ref="World"/>
 
@@ -2942,7 +2942,7 @@ USER DEFINED PROPERTIES ABOVE ^^^
 </structure>
 
   <setup name="Default" version="1.0">
-    <world ref="volWorld"/>
+    <world ref="World"/>
   </setup>
 
 </gdml_simple_extension>

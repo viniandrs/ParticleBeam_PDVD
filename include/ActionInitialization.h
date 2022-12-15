@@ -1,5 +1,7 @@
 #pragma once
 
+#include "DetectorConstruction.h"
+
 #include "G4VUserActionInitialization.hh"
 #include "G4GDMLParser.hh"
 

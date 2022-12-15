@@ -18,6 +18,7 @@ void RunAction::BeginOfRunAction(const G4Run *)
     // // Cria histogramas    -- (nome, titulo, nbins, xmin, xmax)
     analysisManager->CreateH1("hEnergy", "Energy of scintillation photon", 2000, 4, 16); //0 Liquid Argon scintillation spectrum
     analysisManager->CreateH1("hAlpha", "Alpha Spectrum", 100, -1.0, 6.0);               //1
+    analysisManager->CreateH1("hv", "Photons detected", 101, -1.0, 100);               //2
 
     // //NTuple
     analysisManager->SetFirstNtupleId(0);

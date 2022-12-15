@@ -1,0 +1,2 @@
+TGeoManager::Import("geo.gdml");
+gGeoManager->GetTopVolume()->Draw("ogl");
