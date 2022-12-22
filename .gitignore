@@ -4,5 +4,6 @@ build/
 .git/
 photons_count_Arapucas.dat
 geovis.txt
+geometry/
 	
 

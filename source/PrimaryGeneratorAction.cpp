@@ -25,7 +25,7 @@ m_newGun(new G4ParticleGun)
     m_newGun->SetParticleDefinition(electron);
 
     //------------------- initial particle energy -------------------
-    m_newGun->SetParticleEnergy(4 * GeV);
+    m_newGun->SetParticleEnergy(0.5 * GeV);
 }
 
 PrimaryGeneratorAction::~PrimaryGeneratorAction()

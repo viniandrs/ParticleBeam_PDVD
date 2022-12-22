@@ -11,24 +11,24 @@ RunAction::~RunAction() {}
 
 void RunAction::BeginOfRunAction(const G4Run *)
 {
-    //-------------------------Root setup--------------------------------//
     G4AnalysisManager *analysisManager = G4AnalysisManager::Instance();
     analysisManager->OpenFile("output.root");
 
     // // Cria histogramas    -- (nome, titulo, nbins, xmin, xmax)
-    analysisManager->CreateH1("hEnergy", "Energy of scintillation photon", 2000, 4, 16); //0 Liquid Argon scintillation spectrum
-    analysisManager->CreateH1("hAlpha", "Alpha Spectrum", 100, -1.0, 6.0);               //1
-    analysisManager->CreateH1("hv", "Photons detected", 101, -1.0, 100);               //2
+    // analysisManager->CreateH1("hEnergy", "Energy of scintillation photon", 2000, 4, 16); //0 Liquid Argon scintillation spectrum
+    // analysisManager->CreateH1("hAlpha", "Alpha Spectrum", 100, -1.0, 6.0);               //1
+    analysisManager->CreateH1("hv", "Photons detected", 50, -1, 16);               //2
+    // deposito de energia: posição e energia depositada
 
     // //NTuple
-    analysisManager->SetFirstNtupleId(0);
-    analysisManager->CreateNtuple("alpha", "Alpha particles data"); //NTuple 0: alpha data
-    analysisManager->CreateNtupleIColumn("photonsGenerated");//0
-    analysisManager->CreateNtupleIColumn("photonsDetected");//1
-    analysisManager->CreateNtupleFColumn("alphaXGen");//2
-    analysisManager->CreateNtupleFColumn("alphaYGen");//3
-    analysisManager->CreateNtupleFColumn("alphaZGen");//4
-    analysisManager->FinishNtuple(0);
+    // analysisManager->SetFirstNtupleId(0);
+    // analysisManager->CreateNtuple("alpha", "Alpha particles data"); //NTuple 0: alpha data
+    // analysisManager->CreateNtupleIColumn("photonsGenerated");//0
+    // analysisManager->CreateNtupleIColumn("photonsDetected");//1
+    // analysisManager->CreateNtupleFColumn("alphaXGen");//2
+    // analysisManager->CreateNtupleFColumn("alphaYGen");//3
+    // analysisManager->CreateNtupleFColumn("alphaZGen");//4
+    // analysisManager->FinishNtuple(0);
 }
 
 void RunAction::EndOfRunAction(const G4Run *)

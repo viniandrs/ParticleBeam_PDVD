@@ -1,0 +1,27 @@
+############################################################
+#                      RUN CONFIG                          #
+############################################################
+
+# Change the default number of threads (in multi-threaded mode)
+/run/numberOfThreads 2
+
+# Let's ask geant4 to report more details about the simulation
+# by ajusting the verbosity level for each subsystem:
+/control/verbose 0
+/control/saveHistory
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+# Enable or disable visualization by turning on this line
+/control/execute vis.mac
+
+# Physics list debug
+#/process/list
+#/particle/list
+
+# Initialize kernel
+/run/initialize
+
+/run/beamOn 1
+

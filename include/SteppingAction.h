@@ -5,6 +5,7 @@
 #include "G4String.hh"
 
 #include <vector>
+#include <map>
 
 class SteppingAction : public G4UserSteppingAction
 {
@@ -16,6 +17,5 @@ public:
     virtual void UserSteppingAction(const G4Step *);
 
 private:
-    std::pair<int, int> VolumeCode(std::string name);
-    std::vector<G4String> vname;
+    std::map<G4String, G4int> arapuca_codes;
 };

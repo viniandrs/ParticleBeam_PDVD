@@ -1,9 +1,3 @@
-# Change the default number of threads (in multi-threaded mode)
-#/run/numberOfThreads 4
-#
-# Initialize kernel
-/run/initialize
-#
 ############################################################
 #                      VIS CONFIG                          #
 ############################################################
@@ -76,21 +70,3 @@
 # /vis/verbose warnings
 #
 #
-############################################################
-#                      RUN CONFIG                          #
-############################################################
-#
-# Let's ask geant4 to report more details about the simulation
-# by ajusting the verbosity level for each subsystem:
-/control/verbose 0
-/control/saveHistory
-/run/verbose 0
-/event/verbose 0
-/tracking/verbose 0
-
-#/process/list
-#/particle/list
-
-#
-#/run/beamOn 10000
-

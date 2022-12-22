@@ -43,12 +43,15 @@ target_link_libraries(pb_sim ${Geant4_LIBRARIES})
 # relies on these scripts being in the current working directory.
 #
 set(G04_SCRIPTS
-    geo.gdml /macro/init_vis.mac
+    geo.gdml macro/vis.mac macro/execute.mac
   )
+
+# Debug options
+set(CMAKE_BUILD_TYPE Debug)
+#set(CMAKE_BUILD_TYPE RelWithDebInfo)
 
 foreach(_script ${G04_SCRIPTS})
   configure_file(
-    ${PROJECT_SOURCE_DIR}/${_script}
     ${PROJECT_BINARY_DIR}/${_script}
     COPYONLY
     )

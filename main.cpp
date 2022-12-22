@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+#include "G4Types.hh"
+
 // User Action classes
 #include "include/ActionInitialization.h"
 
@@ -10,7 +12,7 @@ using namespace std;
 
 #include "G4RunManager.hh"
 #include "G4MTRunManager.hh"
-//#include "G4ScoringManager.hh"
+#include "G4ScoringManager.hh"
 
 // User Interface classes
 #include "G4UIExecutive.hh"
@@ -31,32 +33,14 @@ using namespace std;
 #include "G4GDMLParser.hh"
 #include "G4LogicalVolumeStore.hh"
 
-void print_aux(const G4GDMLAuxListType *auxInfoList, G4String prepend = "|")
-{
-  for (std::vector<G4GDMLAuxStructType>::const_iterator
-           iaux = auxInfoList->begin();
-       iaux != auxInfoList->end(); iaux++)
-  {
-    G4String str = iaux->type;
-    G4String val = iaux->value;
-    G4String unit = iaux->unit;
-
-    G4cout << prepend << str << " : " << val << " " << unit << G4endl;
-
-    if (iaux->auxList)
-      print_aux(iaux->auxList, prepend + "|");
-  }
-  return;
-}
-
 int main(int argc, char **argv)
 {
   G4MTRunManager *runManager = new G4MTRunManager();
 
   // GDML load
   G4GDMLParser parser;
-  parser.SetOverlapCheck(true);
-  parser.Read("../geo.gdml");
+  //parser.SetOverlapCheck(true);
+  parser.Read("geo.gdml");
 
   // Physics list setup
   G4VModularPhysicsList *physicsList = new FTFP_BERT;
@@ -64,50 +48,17 @@ int main(int argc, char **argv)
   runManager->SetUserInitialization(physicsList);
 
   G4OpticalPhysics *opticalPhysics = new G4OpticalPhysics();
-  opticalPhysics->Configure(kCerenkov, true);
   opticalPhysics->Configure(kScintillation, true);
-  physicsList->DumpList();
 
   physicsList->RegisterPhysics(new G4OpticalPhysics());
-  
+
   // User initialization classes
   runManager->SetUserInitialization(new Detector(parser));
-
   runManager->SetUserInitialization(new ActionInitialization());
-  runManager->Initialize();
 
   // Initializing the visualization manager
   auto *visManager = new G4VisExecutive();
   visManager->Initialize();
-
-  ///////////////////////////////////////////////////////////////////////
-  //
-  // Example how to retrieve Auxiliary Information
-  //
-
-  G4cout << std::endl;
-
-  const G4LogicalVolumeStore *lvs = G4LogicalVolumeStore::GetInstance();
-  std::vector<G4LogicalVolume *>::const_iterator lvciter;
-  for (lvciter = lvs->begin(); lvciter != lvs->end(); lvciter++)
-  {
-    G4GDMLAuxListType auxInfo = parser.GetVolumeAuxiliaryInformation(*lvciter);
-
-    if (auxInfo.size() > 0)
-      G4cout << "Auxiliary Information is found for Logical Volume :  "
-             << (*lvciter)->GetName() << G4endl;
-
-    print_aux(&auxInfo);
-  }
-
-  // now the 'global' auxiliary info
-  G4cout << std::endl;
-  G4cout << "Global auxiliary info:" << std::endl;
-  G4cout << std::endl;
-
-  print_aux(parser.GetAuxList());
-
-  G4cout << std::endl;
 
   // User interface
   auto *uiExecutive = new G4UIExecutive(argc, argv, "Qt");
@@ -120,5 +71,5 @@ int main(int argc, char **argv)
   delete visManager;
   delete uiExecutive;
   delete runManager;
-  return 0; 
+  return 0;
 }
